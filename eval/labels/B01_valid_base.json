@@ -1,0 +1,15 @@
+{
+  "bundle": "B01_valid_base",
+  "split": "dev",
+  "expected_status": "PASS",
+  "case_types": [
+    "valid"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [],
+  "pair_of": null,
+  "notes": "Baseline; all artifacts implement R1-R3 + default."
+}

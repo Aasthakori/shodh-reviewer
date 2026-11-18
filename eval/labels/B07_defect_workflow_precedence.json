@@ -1,0 +1,34 @@
+{
+  "bundle": "B07_defect_workflow_precedence",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "precedence",
+    "wrong_branch"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "workflow",
+      "rule_ref": "R2",
+      "kinds": [
+        "precedence"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": true,
+          "wait_minutes": 30
+        },
+        "expected_route": "priority",
+        "actual_route": "escalation"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": "Workflow checks wait before urgent."
+}

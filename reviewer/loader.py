@@ -18,7 +18,9 @@ from referencing import Registry, Resource
 SCHEMA_DIR = Path(__file__).resolve().parent.parent / "schemas"
 MAX_FILE_BYTES = 200_000          # oversized artifacts are reported, never truncated
 POLICY_HEADER = re.compile(r"<!--\s*artifact:\s*([\w.-]+)\s*,\s*version:\s*([\w.-]+)\s*-->")
-POLICY_LINE = re.compile(r"^\s*(?:[-*]\s*)?\**([A-Za-z][A-Za-z0-9_.-]*)\**\s*:\s*(.+?)\s*$")
+# A requirement is a markdown list item "- <ID>: <text>". IDs are any token
+# (R3, POL-A, rule_7, ...); non-list lines are notes and are kept for scanning.
+POLICY_LINE = re.compile(r"^\s*[-*]\s+\**([A-Za-z][A-Za-z0-9_.-]*)\**\s*:\s*(.+?)\s*$")
 
 
 @dataclass
@@ -150,7 +152,7 @@ def _parse_policy(b: Bundle, text: str) -> None:
             continue
         m = POLICY_LINE.match(ln)
         anchor = {"artifact": b.policy_id, "version": b.policy_version, "file": b.policy_file, "line": i}
-        if m and (re.fullmatch(r"[A-Za-z]+\d+[A-Za-z0-9_.-]*", m.group(1)) or m.group(1).upper() == "DEFAULT"):
+        if m:
             rid = m.group(1)
             if rid in seen:
                 b.problems.append(Problem("policy", f"{b.policy_file}#L{i}", f"duplicate requirement id {rid}", "parse_error"))

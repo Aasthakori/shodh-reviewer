@@ -1,0 +1,33 @@
+{
+  "bundle": "B08_defect_spec_omits_requirement",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "missing_requirement"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "spec",
+      "rule_ref": "R1",
+      "kinds": [
+        "omitted_requirement"
+      ],
+      "witness": {
+        "ticket": {
+          "category": null,
+          "urgent": false,
+          "wait_minutes": 0
+        },
+        "expected_route": "manual_review",
+        "actual_route": "normal"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": "Spec has no R1 rule; source ID absent from spec."
+}

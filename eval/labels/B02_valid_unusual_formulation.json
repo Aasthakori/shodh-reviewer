@@ -1,0 +1,18 @@
+{
+  "bundle": "B02_valid_unusual_formulation",
+  "split": "dev",
+  "expected_status": "PASS",
+  "case_types": [
+    "valid",
+    "unusual_formulation",
+    "units",
+    "model_failure_recovered"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [],
+  "pair_of": null,
+  "notes": "Negations, OR-split of >=, 0.5 hours / 1800 seconds, elif chain, module constants. Fake model: malformed, truncated, then valid with one invented ref and one claim that conflicts with exhaustive result."
+}

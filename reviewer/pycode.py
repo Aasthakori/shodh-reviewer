@@ -284,7 +284,7 @@ def tagged_if_lines(cm: CodeModel, ref: str) -> list[int]:
     out = []
     for node in ast.walk(cm.func):
         if isinstance(node, ast.If):
-            for cand in (node.lineno, node.lineno - 1):
+            for cand in _tag_lines(cm, node.lineno):
                 if ref in cm.tags.get(cand, []):
                     out.append(node.lineno)
                     break
@@ -321,10 +321,22 @@ def run(cm: CodeModel, ticket: dict, field_units: dict[str, str | None] | None =
     return CodeResult(route, line, path[-1] if path else None, _refs_for(cm, path, line))
 
 
+def _tag_lines(cm: CodeModel, line: int) -> list[int]:
+    """Candidate lines whose trace tag applies to the statement at `line`: the
+    line itself, then the contiguous block of comment-only lines above it."""
+    src = cm.source.splitlines()
+    out = [line]
+    ln = line - 1
+    while ln >= 1 and src[ln - 1].strip().startswith("#"):
+        out.append(ln)
+        ln -= 1
+    return out
+
+
 def _refs_for(cm: CodeModel, path: list[int], ret_line: int | None = None) -> list[str]:
     lines = ([ret_line] if ret_line else []) + list(reversed(path))
     for ln in lines:
-        for cand in (ln, ln - 1):
+        for cand in _tag_lines(cm, ln):
             if cand in cm.tags:
                 return cm.tags[cand]
     return []
@@ -440,7 +452,8 @@ def thresholds(cm: CodeModel) -> list[tuple[str, Any]]:
                     f, k, c = side
                     if isinstance(other[1], Fraction) and k != 0:
                         out.append((f, (other[1] - c) / k))
-                    elif not isinstance(other[1], Fraction):
+                    elif not isinstance(other[1], Fraction) and other[1] is not None:
+                        # `is None` checks are about presence, not a domain value
                         out.append((f, other[1]))
     return out
 

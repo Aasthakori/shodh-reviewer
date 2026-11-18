@@ -139,7 +139,9 @@ def review(bundle_dir: str | Path, cfg: ReviewConfig | None = None, client: Mode
     model_section = None
     required = b.manifest.get("review_policy", {}).get("model_required", False)
     if cfg.model != "none" or required:
-        if client is None:
+        if client is None and cfg.model == "none":
+            client = None
+        elif client is None:
             if cfg.model == "ollama":
                 from .model import OllamaClient
                 client = OllamaClient(cfg.ollama_model)
@@ -149,7 +151,11 @@ def review(bundle_dir: str | Path, cfg: ReviewConfig | None = None, client: Mode
                     and sem.domain.mode == "exhaustive"}
         blockers_now = sum(1 for f in F.items if f["severity"] == "blocker")
         summary = f"{blockers_now} deterministic blocker(s); rules verified exhaustively: {sorted(verified)}"
-        mo = review_with_model(client, b.texts, summary, eff.all_ids(), verified)
+        if client is None:
+            from .model import ModelOutcome
+            mo = ModelOutcome("failed", reason="model review is required by review_policy but no model client is configured")
+        else:
+            mo = review_with_model(client, b.texts, summary, eff.all_ids(), verified)
         for f in mo.accepted:
             F.add(f.get("severity", "info"), f"model_{f['kind']}", f.get("rule_ref") or None, f["artifact"], None,
                   f["location"], {"quote": f["evidence_quote"], "claim": f["claim"], "advisory": True},
@@ -258,11 +264,18 @@ def _semantic_findings(b: Bundle, eff: Effective, sem, F: _Findings) -> None:
     groups: dict[tuple, list] = {}
     for mm in sem.mismatches:
         kind, ref, why = classify(mm, eff.primary)
-        groups.setdefault((mm.artifact.name, kind, ref, mm.act.location), []).append((mm, why))
+        # one finding per (artifact, defect kind, requirement); every failing
+        # location is kept in the evidence instead of producing duplicates
+        groups.setdefault((mm.artifact.name, kind, ref), []).append((mm, why))
     by_id = {r.id: r for r in eff.primary}
-    for (art, kind, ref, loc), items in groups.items():
+    for (art, kind, ref), items in groups.items():
         mm, why = items[0]
         req = by_id.get(ref, mm.exp_rule)
+        locs = sorted({x.act.location for x, _ in items})
+        loc = (f"{mm.artifact.file} (no element implements {ref}; source requirement at {req.location()})"
+               if kind == "omitted_requirement" else mm.act.location)
+        if kind == "condition_mismatch" and ref not in mm.act.refs and mm.artifact.impls.get(ref):
+            loc = mm.artifact.impls[ref][0][0]   # point at the element that implements the rule
         ev = {
             "counterexample": {"ticket": mm.ticket, "expected_route": mm.exp_route,
                                "expected_by": f"{mm.exp_rule.id} ({mm.exp_rule.location()})",
@@ -272,6 +285,7 @@ def _semantic_findings(b: Bundle, eff: Effective, sem, F: _Findings) -> None:
                             "location": req.location(), "provenance": req.provenance},
             "explanation": why,
             "failing_tickets": len(items),
+            "actual_locations": locs,
         }
         unapproved = _matches_unapproved(b, eff, mm)
         if unapproved:

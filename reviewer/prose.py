@@ -142,8 +142,13 @@ def _value(word: str, field: str, vocab: Vocabulary) -> Any:
     raise ProseError(f"cannot use {word!r} as a value of numeric field {field}")
 
 
+_OR_SUFFIX = re.compile(r"\bor\s+(more|longer|less|fewer|shorter)\b", re.I)
+
+
 def parse_condition(text: str, vocab: Vocabulary) -> dict:
-    t = _strip_parens(text)
+    # "30 minutes or more" is a single comparison, not a disjunction: protect it
+    # from the top-level " or " split by joining it with an underscore.
+    t = _OR_SUFFIX.sub(lambda m: "or_" + m.group(1), _strip_parens(text))
     ors = _split_top(t, "or")
     if len(ors) > 1:
         return {"any": [parse_condition(p, vocab) for p in ors]}
@@ -187,7 +192,7 @@ def _clause(text: str, vocab: Vocabulary) -> dict:
         m = re.fullmatch(r"(.+?)\s+(?:is\s+)?" + re.escape(phrase) + r"\s+" + NUM + UNIT, low)
         if m:
             return _num(vocab.field(m.group(1)), op, m.group(2), m.group(3), vocab)
-    m = re.fullmatch(r"(.+?)\s+(?:is\s+)?" + NUM + UNIT + r"\s+or\s+(more|longer|less|fewer|shorter)", low)
+    m = re.fullmatch(r"(.+?)\s+(?:is\s+)?" + NUM + UNIT + r"\s+or[\s_]+(more|longer|less|fewer|shorter)", low)
     if m:
         op = ">=" if m.group(4) in ("more", "longer") else "<="
         return _num(vocab.field(m.group(1)), op, m.group(2), m.group(3), vocab)

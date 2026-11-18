@@ -1,0 +1,15 @@
+{
+  "bundle": "B09_incomplete_approval_conflict",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "case_types": [
+    "incomplete",
+    "approval_conflict"
+  ],
+  "oracle": {
+    "policy": "undefined"
+  },
+  "expected_findings": [],
+  "pair_of": null,
+  "notes": "CH-401 (25) and CH-402 (20) both approved, no supersedes. Artifacts use 25: wrong under one reading only, so no blocker can be established."
+}

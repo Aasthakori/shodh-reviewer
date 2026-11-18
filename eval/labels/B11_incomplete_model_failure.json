@@ -1,0 +1,16 @@
+{
+  "bundle": "B11_incomplete_model_failure",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "case_types": [
+    "incomplete",
+    "model_failure"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [],
+  "pair_of": null,
+  "notes": "review_policy.model_required; fake client times out on all 3 attempts."
+}

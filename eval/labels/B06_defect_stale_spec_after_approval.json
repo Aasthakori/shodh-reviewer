@@ -1,0 +1,33 @@
+{
+  "bundle": "B06_defect_stale_spec_after_approval",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "approved_change"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 25
+  },
+  "expected_findings": [
+    {
+      "artifact": "spec",
+      "rule_ref": "R3",
+      "kinds": [
+        "condition_mismatch"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": false,
+          "wait_minutes": 25
+        },
+        "expected_route": "escalation",
+        "actual_route": "normal"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": "CH-301 approved; spec still 30."
+}

@@ -1,0 +1,15 @@
+{
+  "bundle": "B10_incomplete_unsupported_requirement",
+  "split": "dev",
+  "expected_status": "INCOMPLETE",
+  "case_types": [
+    "incomplete",
+    "unsupported_language"
+  ],
+  "oracle": {
+    "policy": "undefined"
+  },
+  "expected_findings": [],
+  "pair_of": null,
+  "notes": "R3 'seems upset' is outside the language; tickets reaching R3 have no defined expectation."
+}

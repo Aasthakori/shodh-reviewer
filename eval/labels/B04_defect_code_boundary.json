@@ -1,0 +1,34 @@
+{
+  "bundle": "B04_defect_code_boundary",
+  "split": "dev",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "boundary",
+    "code_disagreement"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "router",
+      "rule_ref": "R3",
+      "kinds": [
+        "condition_mismatch"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": false,
+          "wait_minutes": 30
+        },
+        "expected_route": "escalation",
+        "actual_route": "normal"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": "router.py uses > 30; wait=30 must escalate."
+}

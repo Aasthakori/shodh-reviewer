@@ -1,0 +1,30 @@
+{
+  "bundle": "B01_valid_base with IDs renamed (R1->POL-A ...)",
+  "status": "CHANGES_REQUIRED",
+  "summary": "3 blocker(s): wrong_route DEFAULT in spec; wrong_route DEFAULT in workflow; wrong_route DEFAULT in router.",
+  "coverage_requirements": [
+    {
+      "rule": "DEFAULT",
+      "location": "policy.md#L9",
+      "parsed": "default"
+    }
+  ],
+  "first_blocker": {
+    "kind": "wrong_route",
+    "rule_ref": "DEFAULT",
+    "artifact": "spec",
+    "location": "spec.json#/rules/0 (X9)",
+    "counterexample": {
+      "ticket": {
+        "category": null,
+        "urgent": false,
+        "wait_minutes": 29
+      },
+      "expected_route": "normal",
+      "expected_by": "DEFAULT (policy.md#L9)",
+      "actual_route": "manual_review",
+      "actual_by": "spec.json#/rules/0 (X9)",
+      "actual_detail": "category is missing"
+    }
+  }
+}
