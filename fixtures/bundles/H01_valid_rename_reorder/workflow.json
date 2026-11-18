@@ -1,0 +1,67 @@
+{
+  "artifact_id": "routing-workflow",
+  "version": "4",
+  "start": "chk_cat",
+  "nodes": {
+    "to_norm": {
+      "type": "route",
+      "rev": 1,
+      "route": "normal"
+    },
+    "to_esc": {
+      "type": "route",
+      "rev": 1,
+      "route": "escalation"
+    },
+    "to_prio": {
+      "type": "route",
+      "rev": 1,
+      "route": "priority"
+    },
+    "to_manual": {
+      "type": "route",
+      "rev": 1,
+      "route": "manual_review"
+    },
+    "chk_wait": {
+      "type": "decision",
+      "rev": 2,
+      "implements": [
+        "POL-C"
+      ],
+      "condition": {
+        "field": "wait_minutes",
+        "op": ">=",
+        "value": 30
+      },
+      "on_true": "to_esc",
+      "on_false": "to_norm"
+    },
+    "chk_urg": {
+      "type": "decision",
+      "rev": 1,
+      "implements": [
+        "POL-B"
+      ],
+      "condition": {
+        "field": "urgent",
+        "op": "==",
+        "value": true
+      },
+      "on_true": "to_prio",
+      "on_false": "chk_wait"
+    },
+    "chk_cat": {
+      "type": "decision",
+      "rev": 1,
+      "implements": [
+        "POL-A"
+      ],
+      "condition": {
+        "missing": "category"
+      },
+      "on_true": "to_manual",
+      "on_false": "chk_urg"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "bundle": "H01_valid_rename_reorder",
+  "split": "heldout",
+  "expected_status": "PASS",
+  "case_types": [
+    "valid",
+    "rename_only",
+    "reorder_only"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [],
+  "pair_of": "B01_valid_base",
+  "notes": ""
+}

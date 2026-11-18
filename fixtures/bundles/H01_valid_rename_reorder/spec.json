@@ -1,0 +1,50 @@
+{
+  "artifact_id": "routing-spec",
+  "version": "2.1",
+  "rules": [
+    {
+      "id": "RULE-W",
+      "order": 3,
+      "implements": [
+        "POL-C"
+      ],
+      "when": {
+        "field": "wait_minutes",
+        "op": ">=",
+        "value": 30,
+        "unit": "minutes"
+      },
+      "route": "escalation"
+    },
+    {
+      "id": "RULE-U",
+      "order": 2,
+      "implements": [
+        "POL-B"
+      ],
+      "when": {
+        "field": "urgent",
+        "op": "==",
+        "value": true
+      },
+      "route": "priority"
+    },
+    {
+      "id": "RULE-M",
+      "order": 1,
+      "implements": [
+        "POL-A"
+      ],
+      "when": {
+        "missing": "category"
+      },
+      "route": "manual_review"
+    }
+  ],
+  "default": {
+    "route": "normal",
+    "implements": [
+      "FALLBACK"
+    ]
+  }
+}

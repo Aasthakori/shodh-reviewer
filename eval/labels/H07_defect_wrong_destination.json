@@ -1,0 +1,35 @@
+{
+  "bundle": "H07_defect_wrong_destination",
+  "split": "heldout",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "wrong_branch",
+    "code_disagreement"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "router",
+      "rule_ref": "R2",
+      "kinds": [
+        "wrong_route",
+        "wrong_destination"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": true,
+          "wait_minutes": 0
+        },
+        "expected_route": "priority",
+        "actual_route": "escalation"
+      }
+    }
+  ],
+  "pair_of": "B01_valid_base",
+  "notes": "Label kind is the true defect type (wrong destination), decided before the run."
+}

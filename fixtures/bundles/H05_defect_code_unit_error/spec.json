@@ -1,0 +1,50 @@
+{
+  "artifact_id": "routing-spec",
+  "version": "2.1",
+  "rules": [
+    {
+      "id": "S1",
+      "order": 1,
+      "implements": [
+        "R1"
+      ],
+      "when": {
+        "missing": "category"
+      },
+      "route": "manual_review"
+    },
+    {
+      "id": "S2",
+      "order": 2,
+      "implements": [
+        "R2"
+      ],
+      "when": {
+        "field": "urgent",
+        "op": "==",
+        "value": true
+      },
+      "route": "priority"
+    },
+    {
+      "id": "S3",
+      "order": 3,
+      "implements": [
+        "R3"
+      ],
+      "when": {
+        "field": "wait_minutes",
+        "op": ">=",
+        "value": 0.5,
+        "unit": "hours"
+      },
+      "route": "escalation"
+    }
+  ],
+  "default": {
+    "route": "normal",
+    "implements": [
+      "DEFAULT"
+    ]
+  }
+}

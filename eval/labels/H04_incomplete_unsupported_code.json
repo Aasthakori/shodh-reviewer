@@ -1,0 +1,16 @@
+{
+  "bundle": "H04_incomplete_unsupported_code",
+  "split": "heldout",
+  "expected_status": "INCOMPLETE",
+  "case_types": [
+    "incomplete",
+    "unsupported_code"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [],
+  "pair_of": null,
+  "notes": "Spec and workflow are correct; router cannot be verified (import, call, assignment)."
+}

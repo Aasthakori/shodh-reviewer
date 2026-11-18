@@ -1,0 +1,34 @@
+{
+  "bundle": "H02_defect_multi_rule_interaction",
+  "split": "heldout",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "rule_interaction",
+    "precedence"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "spec",
+      "rule_ref": "R2",
+      "kinds": [
+        "condition_mismatch"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": true,
+          "wait_minutes": 30
+        },
+        "expected_route": "priority",
+        "actual_route": "escalation"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": "S2 is narrower than R2; urgent tickets with wait>=30 fall through to S3."
+}

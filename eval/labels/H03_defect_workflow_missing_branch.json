@@ -1,0 +1,34 @@
+{
+  "bundle": "H03_defect_workflow_missing_branch",
+  "split": "heldout",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "missing_branch",
+    "wrong_branch"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "workflow",
+      "rule_ref": "DEFAULT",
+      "kinds": [
+        "missing_branch"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": false,
+          "wait_minutes": 0
+        },
+        "expected_route": "normal",
+        "actual_route": "NO_ROUTE"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": ""
+}

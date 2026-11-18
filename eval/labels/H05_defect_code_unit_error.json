@@ -1,0 +1,34 @@
+{
+  "bundle": "H05_defect_code_unit_error",
+  "split": "heldout",
+  "expected_status": "CHANGES_REQUIRED",
+  "case_types": [
+    "defective",
+    "units",
+    "code_disagreement"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [
+    {
+      "artifact": "router",
+      "rule_ref": "R3",
+      "kinds": [
+        "condition_mismatch"
+      ],
+      "witness": {
+        "ticket": {
+          "category": "billing",
+          "urgent": false,
+          "wait_minutes": 10
+        },
+        "expected_route": "normal",
+        "actual_route": "escalation"
+      }
+    }
+  ],
+  "pair_of": null,
+  "notes": ""
+}

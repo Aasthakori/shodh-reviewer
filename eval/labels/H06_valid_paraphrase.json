@@ -1,0 +1,16 @@
+{
+  "bundle": "H06_valid_paraphrase",
+  "split": "heldout",
+  "expected_status": "PASS",
+  "case_types": [
+    "valid",
+    "paraphrase_only"
+  ],
+  "oracle": {
+    "policy": "base",
+    "threshold": 30
+  },
+  "expected_findings": [],
+  "pair_of": "B01_valid_base",
+  "notes": ""
+}
