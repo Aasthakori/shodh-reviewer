@@ -1,0 +1,19 @@
+{
+  "artifact_id": "routing-approvals",
+  "version": "1",
+  "records": [
+    {
+      "change_id": "CH-201",
+      "status": "proposed",
+      "seq": 1,
+      "target": {
+        "artifact": "routing-policy",
+        "version": "1.0",
+        "rule": "R3"
+      },
+      "action": "replace",
+      "new_text": "Otherwise, waiting >= 25 minutes -> escalation queue.",
+      "comment": "suggested by support lead"
+    }
+  ]
+}

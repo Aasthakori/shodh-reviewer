@@ -1,0 +1,101 @@
+{
+  "$id": "report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review report",
+  "type": "object",
+  "required": [
+    "status",
+    "summary",
+    "findings",
+    "coverage",
+    "checks",
+    "artifacts",
+    "reviewer_version"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "PASS",
+        "CHANGES_REQUIRED",
+        "INCOMPLETE"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "kind",
+          "artifact",
+          "version",
+          "location",
+          "evidence",
+          "correction",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "blocker",
+              "warning",
+              "info"
+            ]
+          },
+          "kind": {
+            "type": "string"
+          },
+          "rule_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "artifact": {
+            "type": "string"
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "location": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "object"
+          },
+          "correction": {
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "deterministic",
+              "model"
+            ]
+          }
+        }
+      }
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "checks": {
+      "type": "array"
+    },
+    "artifacts": {
+      "type": "array"
+    },
+    "reviewer_version": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$id": "requirement.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Anchored source requirement (extracted from policy markdown)",
+  "type": "object",
+  "required": [
+    "id",
+    "order",
+    "text",
+    "anchor"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "text": {
+      "type": "string"
+    },
+    "anchor": {
+      "type": "object",
+      "required": [
+        "artifact",
+        "version",
+        "file",
+        "line"
+      ],
+      "properties": {
+        "artifact": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

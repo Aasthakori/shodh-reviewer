@@ -1,0 +1,98 @@
+{
+  "$id": "approvals.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Approval records",
+  "type": "object",
+  "required": [
+    "artifact_id",
+    "version",
+    "records"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "change_id",
+          "status",
+          "seq",
+          "target",
+          "action"
+        ],
+        "properties": {
+          "change_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "approved",
+              "proposed",
+              "rejected",
+              "withdrawn"
+            ]
+          },
+          "approved_by": {
+            "type": "string"
+          },
+          "approved_at": {
+            "type": "string"
+          },
+          "seq": {
+            "type": "integer"
+          },
+          "target": {
+            "type": "object",
+            "required": [
+              "artifact",
+              "version",
+              "rule"
+            ],
+            "properties": {
+              "artifact": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "rule": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "action": {
+            "enum": [
+              "replace",
+              "add",
+              "remove"
+            ]
+          },
+          "new_text": {
+            "type": "string"
+          },
+          "new_rule_id": {
+            "type": "string"
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

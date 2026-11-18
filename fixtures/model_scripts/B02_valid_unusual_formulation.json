@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "text",
+    "text": "Sure! Here is my review: findings are fine"
+  },
+  {
+    "kind": "text",
+    "text": "{\"findings\": [{\"kind\": \"ambiguity\", \"rule_ref\": \"R3\""
+  },
+  {
+    "kind": "text",
+    "text": "{\"findings\": [{\"kind\": \"ambiguity\", \"rule_ref\": \"R3\", \"artifact\": \"policy.md\", \"location\": \"policy.md#L7\", \"evidence_quote\": \"wait is 30 minutes or more\", \"claim\": \"Whether 'wait' means time since creation or since last reply is not stated.\", \"severity\": \"info\"}, {\"kind\": \"intent_mismatch\", \"rule_ref\": \"R9\", \"artifact\": \"policy.md\", \"location\": \"policy.md#L9\", \"evidence_quote\": \"R9: VIP customers\", \"claim\": \"R9 is not implemented.\", \"severity\": \"warning\"}, {\"kind\": \"intent_mismatch\", \"rule_ref\": \"R2\", \"artifact\": \"router.py\", \"location\": \"router.py#L9\", \"evidence_quote\": \"ticket[\\\"urgent\\\"] == True\", \"claim\": \"Urgent tickets are routed incorrectly.\", \"severity\": \"warning\"}], \"overall_opinion\": \"Mostly consistent.\"}"
+  }
+]

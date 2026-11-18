@@ -1,0 +1,75 @@
+{
+  "$id": "spec.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Structured specification",
+  "type": "object",
+  "required": [
+    "artifact_id",
+    "version",
+    "rules",
+    "default"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order",
+          "when",
+          "route"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "implements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "when": {
+            "$ref": "condition.schema.json"
+          },
+          "route": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "default": {
+      "type": "object",
+      "required": [
+        "route"
+      ],
+      "properties": {
+        "route": {
+          "type": "string"
+        },
+        "implements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

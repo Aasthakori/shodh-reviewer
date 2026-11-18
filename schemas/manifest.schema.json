@@ -1,0 +1,149 @@
+{
+  "$id": "manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review bundle manifest",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "domain",
+    "artifacts"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "object",
+      "required": [
+        "fields",
+        "routes"
+      ],
+      "properties": {
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "number",
+                  "bool",
+                  "enum"
+                ]
+              },
+              "unit": {
+                "enum": [
+                  "seconds",
+                  "minutes",
+                  "hours"
+                ]
+              },
+              "nullable": {
+                "type": "boolean"
+              },
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "routes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": [
+        "policy"
+      ],
+      "properties": {
+        "policy": {
+          "type": "string"
+        },
+        "approvals": {
+          "type": "string"
+        },
+        "spec": {
+          "type": "string"
+        },
+        "workflow": {
+          "type": "string"
+        },
+        "code": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "artifact_id",
+              "path",
+              "version"
+            ],
+            "properties": {
+              "artifact_id": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "entrypoint": {
+                "type": "string"
+              },
+              "linked_from": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "review_policy": {
+      "type": "object",
+      "properties": {
+        "model_required": {
+          "type": "boolean"
+        },
+        "required_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

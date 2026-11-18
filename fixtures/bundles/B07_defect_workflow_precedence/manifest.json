@@ -1,0 +1,60 @@
+{
+  "bundle_id": "B07_defect_workflow_precedence",
+  "description": "Workflow evaluates the wait rule before the urgent rule; trace metadata is correct.",
+  "domain": {
+    "fields": {
+      "category": {
+        "type": "enum",
+        "values": [
+          "billing",
+          "technical",
+          "account"
+        ],
+        "nullable": true
+      },
+      "urgent": {
+        "type": "bool"
+      },
+      "wait_minutes": {
+        "type": "number",
+        "unit": "minutes",
+        "min": 0,
+        "aliases": [
+          "wait",
+          "waiting",
+          "waiting time",
+          "wait time"
+        ]
+      }
+    },
+    "routes": {
+      "manual_review": [
+        "manual review"
+      ],
+      "priority": [
+        "priority queue"
+      ],
+      "escalation": [
+        "escalation queue"
+      ],
+      "normal": [
+        "normal queue"
+      ]
+    }
+  },
+  "artifacts": {
+    "policy": "policy.md",
+    "spec": "spec.json",
+    "workflow": "workflow.json",
+    "approvals": "approvals.json",
+    "code": [
+      {
+        "artifact_id": "router",
+        "path": "router.py",
+        "version": "1.3",
+        "entrypoint": "route",
+        "linked_from": "routing-spec"
+      }
+    ]
+  }
+}

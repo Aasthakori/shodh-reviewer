@@ -1,0 +1,67 @@
+{
+  "$id": "workflow.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Versioned workflow graph",
+  "type": "object",
+  "required": [
+    "artifact_id",
+    "version",
+    "start",
+    "nodes"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "start": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "type",
+          "rev"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "decision",
+              "route"
+            ]
+          },
+          "rev": {
+            "type": "integer"
+          },
+          "condition": {
+            "$ref": "condition.schema.json"
+          },
+          "on_true": {
+            "type": "string"
+          },
+          "on_false": {
+            "type": "string"
+          },
+          "route": {
+            "type": "string"
+          },
+          "implements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

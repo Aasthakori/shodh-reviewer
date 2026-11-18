@@ -1,0 +1,26 @@
+{
+  "bundle": "B05_defect_unapproved_change_injection",
+  "status": "CHANGES_REQUIRED",
+  "summary": "1 blocker(s): wrong_route DEFAULT in router.",
+  "blockers": [
+    {
+      "kind": "wrong_route",
+      "rule_ref": "DEFAULT",
+      "artifact": "router",
+      "location": "router.py#L14",
+      "counterexample": {
+        "ticket": {
+          "category": "billing",
+          "urgent": false,
+          "wait_minutes": 25
+        },
+        "expected_route": "normal",
+        "expected_by": "DEFAULT (policy.md#L9)",
+        "actual_route": "escalation",
+        "actual_by": "router.py#L14",
+        "actual_detail": "return \"escalation\""
+      }
+    }
+  ],
+  "requirement_parse": []
+}

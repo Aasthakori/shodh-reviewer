@@ -1,0 +1,67 @@
+{
+  "artifact_id": "routing-workflow",
+  "version": "4",
+  "start": "n_category",
+  "nodes": {
+    "n_category": {
+      "type": "decision",
+      "rev": 1,
+      "implements": [
+        "R1"
+      ],
+      "condition": {
+        "missing": "category"
+      },
+      "on_true": "q_manual",
+      "on_false": "n_urgent"
+    },
+    "n_urgent": {
+      "type": "decision",
+      "rev": 1,
+      "implements": [
+        "R2"
+      ],
+      "condition": {
+        "field": "urgent",
+        "op": "==",
+        "value": true
+      },
+      "on_true": "q_priority",
+      "on_false": "n_wait"
+    },
+    "n_wait": {
+      "type": "decision",
+      "rev": 2,
+      "implements": [
+        "R3"
+      ],
+      "condition": {
+        "field": "wait_minutes",
+        "op": ">=",
+        "value": 25
+      },
+      "on_true": "q_escalation",
+      "on_false": "q_normal"
+    },
+    "q_manual": {
+      "type": "route",
+      "rev": 1,
+      "route": "manual_review"
+    },
+    "q_priority": {
+      "type": "route",
+      "rev": 1,
+      "route": "priority"
+    },
+    "q_escalation": {
+      "type": "route",
+      "rev": 1,
+      "route": "escalation"
+    },
+    "q_normal": {
+      "type": "route",
+      "rev": 1,
+      "route": "normal"
+    }
+  }
+}

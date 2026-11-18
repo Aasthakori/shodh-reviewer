@@ -1,0 +1,62 @@
+{
+  "bundle": "B08_defect_spec_omits_requirement",
+  "status": "CHANGES_REQUIRED",
+  "summary": "3 blocker(s): omitted_requirement R1 in spec; omitted_requirement R1 in spec; omitted_requirement R1 in spec.",
+  "blockers": [
+    {
+      "kind": "omitted_requirement",
+      "rule_ref": "R1",
+      "artifact": "spec",
+      "location": "spec.json#/default",
+      "counterexample": {
+        "ticket": {
+          "category": null,
+          "urgent": false,
+          "wait_minutes": 29
+        },
+        "expected_route": "manual_review",
+        "expected_by": "R1 (policy.md#L6)",
+        "actual_route": "normal",
+        "actual_by": "spec.json#/default",
+        "actual_detail": "default"
+      }
+    },
+    {
+      "kind": "omitted_requirement",
+      "rule_ref": "R1",
+      "artifact": "spec",
+      "location": "spec.json#/rules/1 (S3)",
+      "counterexample": {
+        "ticket": {
+          "category": null,
+          "urgent": false,
+          "wait_minutes": 30
+        },
+        "expected_route": "manual_review",
+        "expected_by": "R1 (policy.md#L6)",
+        "actual_route": "escalation",
+        "actual_by": "spec.json#/rules/1 (S3)",
+        "actual_detail": "wait_minutes >= 30"
+      }
+    },
+    {
+      "kind": "omitted_requirement",
+      "rule_ref": "R1",
+      "artifact": "spec",
+      "location": "spec.json#/rules/0 (S2)",
+      "counterexample": {
+        "ticket": {
+          "category": null,
+          "urgent": true,
+          "wait_minutes": 29
+        },
+        "expected_route": "manual_review",
+        "expected_by": "R1 (policy.md#L6)",
+        "actual_route": "priority",
+        "actual_by": "spec.json#/rules/0 (S2)",
+        "actual_detail": "urgent == True"
+      }
+    }
+  ],
+  "requirement_parse": []
+}

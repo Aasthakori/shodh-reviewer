@@ -1,0 +1,34 @@
+{
+  "artifact_id": "routing-approvals",
+  "version": "1",
+  "records": [
+    {
+      "change_id": "CH-401",
+      "status": "approved",
+      "approved_by": "ops-director",
+      "approved_at": "2026-10-01",
+      "seq": 5,
+      "target": {
+        "artifact": "routing-policy",
+        "version": "1.0",
+        "rule": "R3"
+      },
+      "action": "replace",
+      "new_text": "Otherwise, waiting >= 25 minutes -> escalation queue."
+    },
+    {
+      "change_id": "CH-402",
+      "status": "approved",
+      "approved_by": "cx-director",
+      "approved_at": "2026-10-03",
+      "seq": 6,
+      "target": {
+        "artifact": "routing-policy",
+        "version": "1.0",
+        "rule": "R3"
+      },
+      "action": "replace",
+      "new_text": "Otherwise, waiting >= 20 minutes -> escalation queue."
+    }
+  ]
+}

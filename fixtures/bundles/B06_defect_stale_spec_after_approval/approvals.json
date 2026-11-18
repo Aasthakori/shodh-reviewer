@@ -1,0 +1,20 @@
+{
+  "artifact_id": "routing-approvals",
+  "version": "1",
+  "records": [
+    {
+      "change_id": "CH-301",
+      "status": "approved",
+      "approved_by": "ops-director",
+      "approved_at": "2026-10-20",
+      "seq": 1,
+      "target": {
+        "artifact": "routing-policy",
+        "version": "1.0",
+        "rule": "R3"
+      },
+      "action": "replace",
+      "new_text": "Otherwise, waiting >= 25 minutes -> escalation queue."
+    }
+  ]
+}

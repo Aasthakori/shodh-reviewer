@@ -1,0 +1,21 @@
+{
+  "bundle": "B02_valid_unusual_formulation",
+  "status": "INCOMPLETE",
+  "summary": "Review incomplete: requirement R3: not in supported language: cannot use '30 minutes' as a value of numeric field wait_minutes; artifact spec: 9 ticket(s) have no defined expected route (unsupported requirement or approval conflict); artifact workflow: 9 ticket(s) have no defined expected route (unsupported requirement or approval conflict); artifact router: 9 ticket(s) have no defined expected route (unsupported requirement or approval conflict)",
+  "blockers": [],
+  "requirement_parse": [
+    {
+      "rule": "R3",
+      "location": "policy.md#L6",
+      "provenance": [],
+      "text": "If wait is 30 minutes or more then route to escalation queue.",
+      "parsed": null,
+      "route": null,
+      "artifacts": {
+        "spec": "unreviewed",
+        "workflow": "unreviewed",
+        "router": "unreviewed"
+      }
+    }
+  ]
+}
