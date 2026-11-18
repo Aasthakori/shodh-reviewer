@@ -46,7 +46,7 @@
     "fixtures/bundles/H05_defect_code_unit_error/approvals.json": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1",
     "fixtures/bundles/H05_defect_code_unit_error/manifest.json": "7cf0cdc0b5a6c3d21cb8521b7be150bf0c5a0bbb81e286a1906abc3be6b231ef",
     "fixtures/bundles/H05_defect_code_unit_error/policy.md": "6e81fe055346dadfef1560b5b9c51f068be16bf2c01ac6b16cacd51afb07e509",
-    "fixtures/bundles/H05_defect_code_unit_error/router.py": "823e47e7f93beb2ed0c9d7bd16f31bcd4e345d7843af9708cf3ac66586746f08",
+    "fixtures/bundles/H05_defect_code_unit_error/router.py": "f03b59b5c1165d02e59e870ad0d404df66a59fcaf4dee0606b2c095122c2e00a",
     "fixtures/bundles/H05_defect_code_unit_error/spec.json": "16e70c8395225f9880130d3b0c320d9c2fdbcc053c3e379308bd5d68a88acd83",
     "fixtures/bundles/H05_defect_code_unit_error/workflow.json": "a9a7c6bcf532e6642ea280f57d3e43b07adb563ab53c6d4d682b13185564dcd0",
     "fixtures/bundles/H06_valid_paraphrase/approvals.json": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1",
@@ -80,5 +80,8 @@
     "eval/labels/H06_valid_paraphrase.json": "9faeb35eb18aaa07885f3f04ece93e2cea65828dedd94863fe5070016c8cd220",
     "eval/labels/H07_defect_wrong_destination.json": "d06f9c6489ac8ca1f210538d7626576dbdf46752930c1dcf51f3d1eb09b985c4"
   },
-  "statement": "Held-out bundles and labels were written after the final implementation commit and frozen before the reviewer was first run on them. Dev bundles B01-B11 were inspected during development and count as development evidence."
+  "statement": "Held-out bundles and labels were written after the final implementation commit and frozen before the reviewer was first run on them. Dev bundles B01-B11 were inspected during development and count as development evidence.",
+  "amendments": [
+    "H05 router.py had an authoring syntax error (comment placed before the colon). The label check in eval/run_eval.py caught it before the reviewer was run on any held-out bundle; the fixture was corrected and the set re-frozen. No reviewer code changed."
+  ]
 }
