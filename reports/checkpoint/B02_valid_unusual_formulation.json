@@ -1,0 +1,342 @@
+{
+  "reviewer_version": "1.0.0",
+  "bundle": "B02_valid_unusual_formulation",
+  "status": "INCOMPLETE",
+  "summary": "Review incomplete: requirement R3: not in supported language: cannot use '30 minutes' as a value of numeric field wait_minutes; artifact spec: 9 ticket(s) have no defined expected route (unsupported requirement or approval conflict); artifact workflow: 9 ticket(s) have no defined expected route (unsupported requirement or approval conflict); artifact router: 9 ticket(s) have no defined expected route (unsupported requirement or approval conflict)",
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "warning",
+      "kind": "unsupported_requirement",
+      "rule_ref": "R3",
+      "artifact": "routing-policy",
+      "version": "1.0",
+      "location": "policy.md#L6",
+      "evidence": {
+        "text": "If wait is 30 minutes or more then route to escalation queue.",
+        "reason": "cannot use '30 minutes' as a value of numeric field wait_minutes"
+      },
+      "correction": "Rewrite the requirement in the supported language (docs/LANGUAGE.md) or clarify it.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F002",
+      "severity": "warning",
+      "kind": "undeclared_value",
+      "rule_ref": null,
+      "artifact": "manifest",
+      "version": null,
+      "location": "manifest.json#/domain/fields/category",
+      "evidence": {
+        "field": "category",
+        "value": null
+      },
+      "correction": "Declare None in the domain or fix the artifact.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F003",
+      "severity": "info",
+      "kind": "model_ambiguity",
+      "rule_ref": "R3",
+      "artifact": "policy.md",
+      "version": null,
+      "location": "policy.md#L7",
+      "evidence": {
+        "quote": "wait is 30 minutes or more",
+        "claim": "Whether 'wait' means time since creation or since last reply is not stated.",
+        "advisory": true
+      },
+      "correction": "Advisory only: confirm with the policy owner.",
+      "source": "model"
+    }
+  ],
+  "coverage": {
+    "domain": {
+      "mode": "exhaustive",
+      "tickets": 24,
+      "points": {
+        "category": [
+          null,
+          "billing",
+          "technical",
+          "account"
+        ],
+        "urgent": [
+          false,
+          true
+        ],
+        "wait_minutes": [
+          29,
+          30,
+          31
+        ]
+      },
+      "boundary_points": true
+    },
+    "requirements": [
+      {
+        "rule": "R1",
+        "location": "policy.md#L4",
+        "provenance": [],
+        "text": "If category is missing then route to manual review.",
+        "parsed": "category is missing",
+        "route": "manual_review",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R2",
+        "location": "policy.md#L5",
+        "provenance": [],
+        "text": "If urgent is true then route to priority queue.",
+        "parsed": "urgent == True",
+        "route": "priority",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R3",
+        "location": "policy.md#L6",
+        "provenance": [],
+        "text": "If wait is 30 minutes or more then route to escalation queue.",
+        "parsed": null,
+        "route": null,
+        "artifacts": {
+          "spec": "unreviewed",
+          "workflow": "unreviewed",
+          "router": "unreviewed"
+        }
+      },
+      {
+        "rule": "DEFAULT",
+        "location": "policy.md#L7",
+        "provenance": [],
+        "text": "Otherwise route to normal queue.",
+        "parsed": "default",
+        "route": "normal",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      }
+    ],
+    "unreviewed": [
+      {
+        "scope": "requirement R3",
+        "reason": "not in supported language: cannot use '30 minutes' as a value of numeric field wait_minutes"
+      },
+      {
+        "scope": "artifact spec",
+        "reason": "9 ticket(s) have no defined expected route (unsupported requirement or approval conflict)"
+      },
+      {
+        "scope": "artifact workflow",
+        "reason": "9 ticket(s) have no defined expected route (unsupported requirement or approval conflict)"
+      },
+      {
+        "scope": "artifact router",
+        "reason": "9 ticket(s) have no defined expected route (unsupported requirement or approval conflict)"
+      }
+    ],
+    "verification_method": "exhaustive partition of the declared domain",
+    "not_verified": "free-form prose outside docs/LANGUAGE.md and Python outside the restricted subset"
+  },
+  "checks": [
+    {
+      "name": "load_and_schema",
+      "status": "pass",
+      "detail": "0 problem(s)"
+    },
+    {
+      "name": "effective_requirements",
+      "status": "pass",
+      "detail": "0 change(s) applied, 0 ignored, 0 conflict(s), 1 candidate reading(s)"
+    },
+    {
+      "name": "requirement_language",
+      "status": "incomplete",
+      "detail": "3/4 requirements parsed"
+    },
+    {
+      "name": "instruction_injection_scan",
+      "status": "pass",
+      "detail": "0 embedded instruction(s) found and ignored"
+    },
+    {
+      "name": "code_syntax:router",
+      "status": "pass",
+      "detail": "ast.parse ok"
+    },
+    {
+      "name": "code_inspection:router",
+      "status": "pass",
+      "detail": "within restricted subset"
+    },
+    {
+      "name": "semantic:spec",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:workflow",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:router",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "model_review",
+      "status": "pass",
+      "detail": "ok; 1 accepted, 2 rejected claim(s); 3 attempt(s)."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "approvals.json",
+      "sha256": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "62ccd30b211f755acdf65d6af22f73502d7b69555f957d647f53e0c76fa8499b"
+    },
+    {
+      "file": "policy.md",
+      "sha256": "81f9b70ec1dbd51366471814c9b35b2936b6e4a2da3148572cd2c39ff29feead"
+    },
+    {
+      "file": "router.py",
+      "sha256": "ddf365104198234ff85e40a99af597339abb563f2f7582c40f2c459dd3b2b4a1"
+    },
+    {
+      "file": "spec.json",
+      "sha256": "90c3f3123a0ab9a484a4176f136b54b1be3693fe43327755daa75fed692b11c4"
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "299777c23807001e8642731eb1e3d24d2e6d8afa9e2b97fcebdb48fbb92e9bcd"
+    }
+  ],
+  "effective_requirements": {
+    "policy": {
+      "artifact": "routing-policy",
+      "version": "1.0"
+    },
+    "applied_changes": [],
+    "candidates": 1
+  },
+  "model": {
+    "status": "ok",
+    "reason": "",
+    "required": false,
+    "accepted": 1,
+    "rejected": [
+      {
+        "claim": {
+          "kind": "intent_mismatch",
+          "rule_ref": "R9",
+          "artifact": "policy.md",
+          "location": "policy.md#L9",
+          "evidence_quote": "R9: VIP customers",
+          "claim": "R9 is not implemented.",
+          "severity": "warning"
+        },
+        "reason": "invented rule reference 'R9'"
+      },
+      {
+        "claim": {
+          "kind": "intent_mismatch",
+          "rule_ref": "R2",
+          "artifact": "router.py",
+          "location": "router.py#L9",
+          "evidence_quote": "ticket[\"urgent\"] == True",
+          "claim": "Urgent tickets are routed incorrectly.",
+          "severity": "warning"
+        },
+        "reason": "conflicts with deterministic result: R2 was verified exhaustively within the supported language"
+      }
+    ],
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4742,
+          "completion_chars": 42
+        },
+        "synthetic": true,
+        "response_sha256": "17be9267014176b74768e34713f4db4275268d3c807b387e0cec2ad6d4e3731c",
+        "error": "malformed JSON: Expecting value"
+      },
+      {
+        "attempt": 2,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4742,
+          "completion_chars": 52
+        },
+        "synthetic": true,
+        "response_sha256": "710c623fb4eccd750582d1e3cb3ef9a2a0daf2db5a7e0f949be1d378715e7e17",
+        "error": "truncated JSON"
+      },
+      {
+        "attempt": 3,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4742,
+          "completion_chars": 724
+        },
+        "synthetic": true,
+        "response_sha256": "5083fb46bfb76f2898437349f17138f03c81f2eb17da8a61601bb47aafc21f7a",
+        "error": null
+      }
+    ],
+    "provenance": {
+      "client": "fake",
+      "synthetic": true,
+      "request": {
+        "model": "fake",
+        "temperature": 0.0,
+        "max_tokens": 1200,
+        "timeout_s": 30.0,
+        "seed": 7,
+        "prompt_version": "reviewer-prompt-v1",
+        "prompt_sha256": "38718fdf2f0e3b544565a529a437c4c4b8f8b14e614fed275e2618ee20a49adc"
+      }
+    }
+  },
+  "config": {
+    "model": "fake",
+    "model_script": [
+      {
+        "kind": "text",
+        "text": "Sure! Here is my review: findings are fine"
+      },
+      {
+        "kind": "text",
+        "text": "{\"findings\": [{\"kind\": \"ambiguity\", \"rule_ref\": \"R3\""
+      },
+      {
+        "kind": "text",
+        "text": "{\"findings\": [{\"kind\": \"ambiguity\", \"rule_ref\": \"R3\", \"artifact\": \"policy.md\", \"location\": \"policy.md#L7\", \"evidence_quote\": \"wait is 30 minutes or more\", \"claim\": \"Whether 'wait' means time since creation or since last reply is not stated.\", \"severity\": \"info\"}, {\"kind\": \"intent_mismatch\", \"rule_ref\": \"R9\", \"artifact\": \"policy.md\", \"location\": \"policy.md#L9\", \"evidence_quote\": \"R9: VIP customers\", \"claim\": \"R9 is not implemented.\", \"severity\": \"warning\"}, {\"kind\": \"intent_mismatch\", \"rule_ref\": \"R2\", \"artifact\": \"router.py\", \"location\": \"router.py#L9\", \"evidence_quote\": \"ticket[\\\"urgent\\\"] == True\", \"claim\": \"Urgent tickets are routed incorrectly.\", \"severity\": \"warning\"}], \"overall_opinion\": \"Mostly consistent.\"}"
+      }
+    ],
+    "ollama_model": "qwen2.5:3b",
+    "boundary_points": true,
+    "approvals": true
+  },
+  "runtime_s": 0.0091
+}

@@ -1,0 +1,606 @@
+{
+  "run": "checkpoint",
+  "impl": "checkpoint",
+  "ablation": "none",
+  "split": "all",
+  "labels_checked": 18,
+  "dev": {
+    "decision": {
+      "false_pass": 0,
+      "defective": 5,
+      "false_block": 0,
+      "valid": 3,
+      "incomplete_by_type": {
+        "valid": 1,
+        "defective": 0,
+        "incomplete": 3
+      },
+      "cases_by_type": {
+        "valid": 3,
+        "defective": 5,
+        "incomplete": 3
+      },
+      "correct_status": 10,
+      "total": 11
+    },
+    "finding_quality": {
+      "expected_findings": 5,
+      "matched_defect_and_location": 4,
+      "counterexamples": 7,
+      "counterexamples_verified": 7,
+      "unsupported_blockers": 1,
+      "blockers_total": 7
+    },
+    "resources": {
+      "model_calls": 15,
+      "model_retries": 4,
+      "runtime_s_total": 0.0958,
+      "wall_s_total": 1.549,
+      "model_client": "fake (synthetic, scripted); real-model performance NOT measured"
+    },
+    "cases": [
+      {
+        "bundle": "B01_valid_base",
+        "split": "dev",
+        "expected": "PASS",
+        "actual": "PASS",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B02_valid_unusual_formulation",
+        "split": "dev",
+        "expected": "PASS",
+        "actual": "INCOMPLETE",
+        "correct": false,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 3
+      },
+      {
+        "bundle": "B03_valid_approved_change",
+        "split": "dev",
+        "expected": "PASS",
+        "actual": "PASS",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B04_defect_code_boundary",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R3",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B05_defect_unapproved_change_injection",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "wrong_route",
+            "DEFAULT",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "0/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B06_defect_stale_spec_after_approval",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R3",
+            "spec"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B07_defect_workflow_precedence",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "precedence",
+            "R2",
+            "workflow"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B08_defect_spec_omits_requirement",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "omitted_requirement",
+            "R1",
+            "spec"
+          ],
+          [
+            "omitted_requirement",
+            "R1",
+            "spec"
+          ],
+          [
+            "omitted_requirement",
+            "R1",
+            "spec"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B09_incomplete_approval_conflict",
+        "split": "dev",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B10_incomplete_unsupported_requirement",
+        "split": "dev",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B11_incomplete_model_failure",
+        "split": "dev",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 3
+      }
+    ]
+  },
+  "heldout": {
+    "decision": {
+      "false_pass": 0,
+      "defective": 4,
+      "false_block": 0,
+      "valid": 2,
+      "incomplete_by_type": {
+        "valid": 1,
+        "defective": 0,
+        "incomplete": 1
+      },
+      "cases_by_type": {
+        "valid": 2,
+        "defective": 4,
+        "incomplete": 1
+      },
+      "correct_status": 6,
+      "total": 7
+    },
+    "finding_quality": {
+      "expected_findings": 4,
+      "matched_defect_and_location": 3,
+      "counterexamples": 4,
+      "counterexamples_verified": 4,
+      "unsupported_blockers": 0,
+      "blockers_total": 4
+    },
+    "resources": {
+      "model_calls": 7,
+      "model_retries": 0,
+      "runtime_s_total": 0.0514,
+      "wall_s_total": 0.9124,
+      "model_client": "fake (synthetic, scripted); real-model performance NOT measured"
+    },
+    "cases": [
+      {
+        "bundle": "H01_valid_rename_reorder",
+        "split": "heldout",
+        "expected": "PASS",
+        "actual": "INCOMPLETE",
+        "correct": false,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H02_defect_multi_rule_interaction",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R2",
+            "spec"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H03_defect_workflow_missing_branch",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "missing_branch",
+            "DEFAULT",
+            "workflow"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H04_incomplete_unsupported_code",
+        "split": "heldout",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H05_defect_code_unit_error",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R3",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H06_valid_paraphrase",
+        "split": "heldout",
+        "expected": "PASS",
+        "actual": "PASS",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H07_defect_wrong_destination",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R2",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "0/1",
+        "model_calls": 1
+      }
+    ]
+  },
+  "all": {
+    "decision": {
+      "false_pass": 0,
+      "defective": 9,
+      "false_block": 0,
+      "valid": 5,
+      "incomplete_by_type": {
+        "valid": 2,
+        "defective": 0,
+        "incomplete": 4
+      },
+      "cases_by_type": {
+        "valid": 5,
+        "defective": 9,
+        "incomplete": 4
+      },
+      "correct_status": 16,
+      "total": 18
+    },
+    "finding_quality": {
+      "expected_findings": 9,
+      "matched_defect_and_location": 7,
+      "counterexamples": 11,
+      "counterexamples_verified": 11,
+      "unsupported_blockers": 1,
+      "blockers_total": 11
+    },
+    "resources": {
+      "model_calls": 22,
+      "model_retries": 4,
+      "runtime_s_total": 0.1472,
+      "wall_s_total": 2.4614,
+      "model_client": "fake (synthetic, scripted); real-model performance NOT measured"
+    },
+    "cases": [
+      {
+        "bundle": "B01_valid_base",
+        "split": "dev",
+        "expected": "PASS",
+        "actual": "PASS",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B02_valid_unusual_formulation",
+        "split": "dev",
+        "expected": "PASS",
+        "actual": "INCOMPLETE",
+        "correct": false,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 3
+      },
+      {
+        "bundle": "B03_valid_approved_change",
+        "split": "dev",
+        "expected": "PASS",
+        "actual": "PASS",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B04_defect_code_boundary",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R3",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B05_defect_unapproved_change_injection",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "wrong_route",
+            "DEFAULT",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "0/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B06_defect_stale_spec_after_approval",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R3",
+            "spec"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B07_defect_workflow_precedence",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "precedence",
+            "R2",
+            "workflow"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B08_defect_spec_omits_requirement",
+        "split": "dev",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "omitted_requirement",
+            "R1",
+            "spec"
+          ],
+          [
+            "omitted_requirement",
+            "R1",
+            "spec"
+          ],
+          [
+            "omitted_requirement",
+            "R1",
+            "spec"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B09_incomplete_approval_conflict",
+        "split": "dev",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B10_incomplete_unsupported_requirement",
+        "split": "dev",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "B11_incomplete_model_failure",
+        "split": "dev",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 3
+      },
+      {
+        "bundle": "H01_valid_rename_reorder",
+        "split": "heldout",
+        "expected": "PASS",
+        "actual": "INCOMPLETE",
+        "correct": false,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H02_defect_multi_rule_interaction",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R2",
+            "spec"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H03_defect_workflow_missing_branch",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "missing_branch",
+            "DEFAULT",
+            "workflow"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H04_incomplete_unsupported_code",
+        "split": "heldout",
+        "expected": "INCOMPLETE",
+        "actual": "INCOMPLETE",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H05_defect_code_unit_error",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R3",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "1/1",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H06_valid_paraphrase",
+        "split": "heldout",
+        "expected": "PASS",
+        "actual": "PASS",
+        "correct": true,
+        "blockers": [],
+        "expected_findings_matched": "0/0",
+        "model_calls": 1
+      },
+      {
+        "bundle": "H07_defect_wrong_destination",
+        "split": "heldout",
+        "expected": "CHANGES_REQUIRED",
+        "actual": "CHANGES_REQUIRED",
+        "correct": true,
+        "blockers": [
+          [
+            "condition_mismatch",
+            "R2",
+            "router"
+          ]
+        ],
+        "expected_findings_matched": "0/1",
+        "model_calls": 1
+      }
+    ]
+  }
+}

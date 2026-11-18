@@ -1,0 +1,360 @@
+{
+  "reviewer_version": "1.0.0",
+  "bundle": "H01_valid_rename_reorder",
+  "status": "INCOMPLETE",
+  "summary": "Review incomplete: policy: no default route; tickets matching no rule have no expected route; artifact spec: 24 ticket(s) have no defined expected route (unsupported requirement or approval conflict); artifact workflow: 24 ticket(s) have no defined expected route (unsupported requirement or approval conflict); artifact router: 24 ticket(s) have no defined expected route (unsupported requirement or approval conflict)",
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "warning",
+      "kind": "missing_default",
+      "rule_ref": null,
+      "artifact": "routing-policy",
+      "version": "1.0",
+      "location": "policy.md",
+      "evidence": {
+        "message": "policy defines no default route"
+      },
+      "correction": "Add 'All remaining tickets -> <route>'.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F002",
+      "severity": "warning",
+      "kind": "undeclared_value",
+      "rule_ref": null,
+      "artifact": "manifest",
+      "version": null,
+      "location": "manifest.json#/domain/fields/category",
+      "evidence": {
+        "field": "category",
+        "value": null
+      },
+      "correction": "Declare None in the domain or fix the artifact.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F003",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "FALLBACK",
+      "artifact": "spec",
+      "version": "2.1",
+      "location": "spec.json",
+      "evidence": {
+        "reference": "FALLBACK",
+        "known": []
+      },
+      "correction": "Point the trace reference FALLBACK at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F004",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-A",
+      "artifact": "spec",
+      "version": "2.1",
+      "location": "spec.json",
+      "evidence": {
+        "reference": "POL-A",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-A at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F005",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-B",
+      "artifact": "spec",
+      "version": "2.1",
+      "location": "spec.json",
+      "evidence": {
+        "reference": "POL-B",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-B at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F006",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-C",
+      "artifact": "spec",
+      "version": "2.1",
+      "location": "spec.json",
+      "evidence": {
+        "reference": "POL-C",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-C at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F007",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-A",
+      "artifact": "workflow",
+      "version": "4",
+      "location": "workflow.json",
+      "evidence": {
+        "reference": "POL-A",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-A at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F008",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-B",
+      "artifact": "workflow",
+      "version": "4",
+      "location": "workflow.json",
+      "evidence": {
+        "reference": "POL-B",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-B at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F009",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-C",
+      "artifact": "workflow",
+      "version": "4",
+      "location": "workflow.json",
+      "evidence": {
+        "reference": "POL-C",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-C at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F010",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-A",
+      "artifact": "router",
+      "version": "1.3",
+      "location": "router.py",
+      "evidence": {
+        "reference": "POL-A",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-A at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F011",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-B",
+      "artifact": "router",
+      "version": "1.3",
+      "location": "router.py",
+      "evidence": {
+        "reference": "POL-B",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-B at an existing requirement.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F012",
+      "severity": "warning",
+      "kind": "unknown_rule_reference",
+      "rule_ref": "POL-C",
+      "artifact": "router",
+      "version": "1.3",
+      "location": "router.py",
+      "evidence": {
+        "reference": "POL-C",
+        "known": []
+      },
+      "correction": "Point the trace reference POL-C at an existing requirement.",
+      "source": "deterministic"
+    }
+  ],
+  "coverage": {
+    "domain": {
+      "mode": "exhaustive",
+      "tickets": 24,
+      "points": {
+        "category": [
+          null,
+          "billing",
+          "technical",
+          "account"
+        ],
+        "urgent": [
+          false,
+          true
+        ],
+        "wait_minutes": [
+          29,
+          30,
+          31
+        ]
+      },
+      "boundary_points": true
+    },
+    "requirements": [],
+    "unreviewed": [
+      {
+        "scope": "policy",
+        "reason": "no default route; tickets matching no rule have no expected route"
+      },
+      {
+        "scope": "artifact spec",
+        "reason": "24 ticket(s) have no defined expected route (unsupported requirement or approval conflict)"
+      },
+      {
+        "scope": "artifact workflow",
+        "reason": "24 ticket(s) have no defined expected route (unsupported requirement or approval conflict)"
+      },
+      {
+        "scope": "artifact router",
+        "reason": "24 ticket(s) have no defined expected route (unsupported requirement or approval conflict)"
+      }
+    ],
+    "verification_method": "exhaustive partition of the declared domain",
+    "not_verified": "free-form prose outside docs/LANGUAGE.md and Python outside the restricted subset"
+  },
+  "checks": [
+    {
+      "name": "load_and_schema",
+      "status": "pass",
+      "detail": "0 problem(s)"
+    },
+    {
+      "name": "effective_requirements",
+      "status": "pass",
+      "detail": "0 change(s) applied, 0 ignored, 0 conflict(s), 1 candidate reading(s)"
+    },
+    {
+      "name": "requirement_language",
+      "status": "pass",
+      "detail": "0/0 requirements parsed"
+    },
+    {
+      "name": "instruction_injection_scan",
+      "status": "pass",
+      "detail": "0 embedded instruction(s) found and ignored"
+    },
+    {
+      "name": "code_syntax:router",
+      "status": "pass",
+      "detail": "ast.parse ok"
+    },
+    {
+      "name": "code_inspection:router",
+      "status": "pass",
+      "detail": "within restricted subset"
+    },
+    {
+      "name": "semantic:spec",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:workflow",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:router",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "model_review",
+      "status": "pass",
+      "detail": "ok; 0 accepted, 0 rejected claim(s); 1 attempt(s)."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "approvals.json",
+      "sha256": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "355c2707a8fd62f3235d700b988140968d610624e1aa8b86af9065302ff97dbe"
+    },
+    {
+      "file": "policy.md",
+      "sha256": "f611001760515cd141afbbf8a5e883300d0a9e20914251918fd29688ccaa2e41"
+    },
+    {
+      "file": "router.py",
+      "sha256": "c0c3380af59de30a5fcf35b5819d03b7690fb4159fa7f51bd705fe99212110e9"
+    },
+    {
+      "file": "spec.json",
+      "sha256": "309978dfefff60d01d7ca3613a8174262a746e71baf7798a8744b80d9fb0b9bf"
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "b5074978839bf3feb3d1487ac3ee2e11de6df2fd21240e87c5d3ba01959f63d0"
+    }
+  ],
+  "effective_requirements": {
+    "policy": {
+      "artifact": "routing-policy",
+      "version": "1.0"
+    },
+    "applied_changes": [],
+    "candidates": 1
+  },
+  "model": {
+    "status": "ok",
+    "reason": "",
+    "required": false,
+    "accepted": 0,
+    "rejected": [],
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4337,
+          "completion_chars": 61
+        },
+        "synthetic": true,
+        "response_sha256": "74f8aa37e08ba1099a3beb3b02dbf4ea2a16697f069ffaa8f3bc606c513f277b",
+        "error": null
+      }
+    ],
+    "provenance": {
+      "client": "fake",
+      "synthetic": true,
+      "request": {
+        "model": "fake",
+        "temperature": 0.0,
+        "max_tokens": 1200,
+        "timeout_s": 30.0,
+        "seed": 7,
+        "prompt_version": "reviewer-prompt-v1",
+        "prompt_sha256": "031b2118c2118f7dd4242c3eb5b86a30b5ba6acc2f12a93d9fe1db57f18c1688"
+      }
+    }
+  },
+  "config": {
+    "model": "fake",
+    "model_script": null,
+    "ollama_model": "qwen2.5:3b",
+    "boundary_points": true,
+    "approvals": true
+  },
+  "runtime_s": 0.0037
+}

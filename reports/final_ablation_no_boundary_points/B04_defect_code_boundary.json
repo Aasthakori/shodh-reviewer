@@ -1,0 +1,215 @@
+{
+  "reviewer_version": "1.0.0",
+  "bundle": "B04_defect_code_boundary",
+  "status": "PASS",
+  "summary": "All effective requirements match every artifact on all 16 partition tickets (exhaustive).",
+  "findings": [],
+  "coverage": {
+    "domain": {
+      "mode": "exhaustive",
+      "tickets": 16,
+      "points": {
+        "category": [
+          null,
+          "billing",
+          "technical",
+          "account"
+        ],
+        "urgent": [
+          false,
+          true
+        ],
+        "wait_minutes": [
+          29,
+          31
+        ]
+      },
+      "boundary_points": false
+    },
+    "requirements": [
+      {
+        "rule": "R1",
+        "location": "policy.md#L6",
+        "provenance": [],
+        "text": "Missing category -> manual review.",
+        "parsed": "category is missing",
+        "route": "manual_review",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R2",
+        "location": "policy.md#L7",
+        "provenance": [],
+        "text": "Otherwise, urgent ticket -> priority queue.",
+        "parsed": "urgent == True",
+        "route": "priority",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R3",
+        "location": "policy.md#L8",
+        "provenance": [],
+        "text": "Otherwise, waiting >= 30 minutes -> escalation.",
+        "parsed": "wait_minutes >= 30",
+        "route": "escalation",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "DEFAULT",
+        "location": "policy.md#L9",
+        "provenance": [],
+        "text": "All remaining tickets -> normal queue.",
+        "parsed": "default",
+        "route": "normal",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      }
+    ],
+    "unreviewed": [],
+    "verification_method": "exhaustive partition of the declared domain",
+    "not_verified": "free-form prose outside docs/LANGUAGE.md and Python outside the restricted subset"
+  },
+  "checks": [
+    {
+      "name": "load_and_schema",
+      "status": "pass",
+      "detail": "0 problem(s)"
+    },
+    {
+      "name": "effective_requirements",
+      "status": "pass",
+      "detail": "0 change(s) applied, 0 ignored, 0 conflict(s), 1 candidate reading(s)"
+    },
+    {
+      "name": "requirement_language",
+      "status": "pass",
+      "detail": "4/4 requirements parsed"
+    },
+    {
+      "name": "instruction_injection_scan",
+      "status": "pass",
+      "detail": "0 embedded instruction(s) found and ignored"
+    },
+    {
+      "name": "code_syntax:router",
+      "status": "pass",
+      "detail": "ast.parse ok"
+    },
+    {
+      "name": "code_inspection:router",
+      "status": "pass",
+      "detail": "within restricted subset"
+    },
+    {
+      "name": "semantic:spec",
+      "status": "pass",
+      "detail": "16 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:workflow",
+      "status": "pass",
+      "detail": "16 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:router",
+      "status": "pass",
+      "detail": "16 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "model_review",
+      "status": "pass",
+      "detail": "ok; 0 accepted, 0 rejected claim(s); 1 attempt(s)."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "approvals.json",
+      "sha256": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "629cde40cc2f143e46ee2ef22e1baa0c3b544cc69766c27b524fd525da7adfc1"
+    },
+    {
+      "file": "policy.md",
+      "sha256": "6e81fe055346dadfef1560b5b9c51f068be16bf2c01ac6b16cacd51afb07e509"
+    },
+    {
+      "file": "router.py",
+      "sha256": "88f21fe44e52e3c71f779f3d6d802504ebfd5ddc2977e3990e730592e0c10018"
+    },
+    {
+      "file": "spec.json",
+      "sha256": "3c35eab1f86bdfd2297009ba9bd375df89a4f035d6221ab1d2e27064d3cc6a4b"
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "a9a7c6bcf532e6642ea280f57d3e43b07adb563ab53c6d4d682b13185564dcd0"
+    }
+  ],
+  "effective_requirements": {
+    "policy": {
+      "artifact": "routing-policy",
+      "version": "1.0"
+    },
+    "applied_changes": [],
+    "candidates": 1
+  },
+  "model": {
+    "status": "ok",
+    "reason": "",
+    "required": false,
+    "accepted": 0,
+    "rejected": [],
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4335,
+          "completion_chars": 61
+        },
+        "synthetic": true,
+        "response_sha256": "74f8aa37e08ba1099a3beb3b02dbf4ea2a16697f069ffaa8f3bc606c513f277b",
+        "error": null
+      }
+    ],
+    "provenance": {
+      "client": "fake",
+      "synthetic": true,
+      "request": {
+        "model": "fake",
+        "temperature": 0.0,
+        "max_tokens": 1200,
+        "timeout_s": 30.0,
+        "seed": 7,
+        "prompt_version": "reviewer-prompt-v1",
+        "prompt_sha256": "e3c2312ba15788dd89d38db5c1b4648e50815f27769334e9116bd80bcc351dc7"
+      }
+    }
+  },
+  "config": {
+    "model": "fake",
+    "model_script": null,
+    "ollama_model": "qwen2.5:3b",
+    "boundary_points": false,
+    "approvals": true
+  },
+  "runtime_s": 0.0083
+}

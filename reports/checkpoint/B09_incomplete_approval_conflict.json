@@ -1,0 +1,267 @@
+{
+  "reviewer_version": "1.0.0",
+  "bundle": "B09_incomplete_approval_conflict",
+  "status": "INCOMPLETE",
+  "summary": "Review incomplete: requirement R3: conflicting approval records: multiple approved changes to the same rule without a supersedes chain; approval conflict: 18 ticket/artifact pair(s) mismatch under some but not all admissible approval readings",
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "warning",
+      "kind": "approval_conflict",
+      "rule_ref": "R3",
+      "artifact": "approvals",
+      "version": "1",
+      "location": "approvals.json",
+      "evidence": {
+        "reason": "multiple approved changes to the same rule without a supersedes chain",
+        "change_ids": [
+          "CH-401",
+          "CH-402"
+        ],
+        "texts": [
+          "Otherwise, waiting >= 25 minutes -> escalation queue.",
+          "Otherwise, waiting >= 20 minutes -> escalation queue."
+        ]
+      },
+      "correction": "Resolve the conflict: mark one change superseded or withdraw one record.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F002",
+      "severity": "warning",
+      "kind": "undeclared_value",
+      "rule_ref": null,
+      "artifact": "manifest",
+      "version": null,
+      "location": "manifest.json#/domain/fields/category",
+      "evidence": {
+        "field": "category",
+        "value": null
+      },
+      "correction": "Declare None in the domain or fix the artifact.",
+      "source": "deterministic"
+    }
+  ],
+  "coverage": {
+    "domain": {
+      "mode": "exhaustive",
+      "tickets": 40,
+      "points": {
+        "category": [
+          null,
+          "billing",
+          "technical",
+          "account"
+        ],
+        "urgent": [
+          false,
+          true
+        ],
+        "wait_minutes": [
+          19,
+          20,
+          22.5,
+          25,
+          26
+        ]
+      },
+      "boundary_points": true
+    },
+    "requirements": [
+      {
+        "rule": "R1",
+        "location": "policy.md#L6",
+        "provenance": [],
+        "text": "Missing category -> manual review.",
+        "parsed": "category is missing",
+        "route": "manual_review",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R2",
+        "location": "policy.md#L7",
+        "provenance": [],
+        "text": "Otherwise, urgent ticket -> priority queue.",
+        "parsed": "urgent == True",
+        "route": "priority",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R3",
+        "location": "approvals.json#/records/0",
+        "provenance": [
+          "CH-401"
+        ],
+        "text": "Otherwise, waiting >= 25 minutes -> escalation queue.",
+        "parsed": "wait_minutes >= 25",
+        "route": "escalation",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "DEFAULT",
+        "location": "policy.md#L9",
+        "provenance": [],
+        "text": "All remaining tickets -> normal queue.",
+        "parsed": "default",
+        "route": "normal",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      }
+    ],
+    "unreviewed": [
+      {
+        "scope": "requirement R3",
+        "reason": "conflicting approval records: multiple approved changes to the same rule without a supersedes chain"
+      },
+      {
+        "scope": "approval conflict",
+        "reason": "18 ticket/artifact pair(s) mismatch under some but not all admissible approval readings"
+      }
+    ],
+    "verification_method": "exhaustive partition of the declared domain",
+    "not_verified": "free-form prose outside docs/LANGUAGE.md and Python outside the restricted subset"
+  },
+  "checks": [
+    {
+      "name": "load_and_schema",
+      "status": "pass",
+      "detail": "0 problem(s)"
+    },
+    {
+      "name": "effective_requirements",
+      "status": "incomplete",
+      "detail": "0 change(s) applied, 0 ignored, 1 conflict(s), 2 candidate reading(s)"
+    },
+    {
+      "name": "requirement_language",
+      "status": "pass",
+      "detail": "4/4 requirements parsed"
+    },
+    {
+      "name": "instruction_injection_scan",
+      "status": "pass",
+      "detail": "0 embedded instruction(s) found and ignored"
+    },
+    {
+      "name": "code_syntax:router",
+      "status": "pass",
+      "detail": "ast.parse ok"
+    },
+    {
+      "name": "code_inspection:router",
+      "status": "pass",
+      "detail": "within restricted subset"
+    },
+    {
+      "name": "semantic:spec",
+      "status": "pass",
+      "detail": "40 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:workflow",
+      "status": "pass",
+      "detail": "40 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:router",
+      "status": "pass",
+      "detail": "40 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "model_review",
+      "status": "pass",
+      "detail": "ok; 0 accepted, 0 rejected claim(s); 1 attempt(s)."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "approvals.json",
+      "sha256": "b118d6b4e3e97e56f2e295c72a6baea1b4ce236921d2eec88ef555a77a19f62d"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "6ebaa3e377a739d9034212b21c6bc657beefb9d0d62803d51eeac4e010f55c81"
+    },
+    {
+      "file": "policy.md",
+      "sha256": "6e81fe055346dadfef1560b5b9c51f068be16bf2c01ac6b16cacd51afb07e509"
+    },
+    {
+      "file": "router.py",
+      "sha256": "80f4ccf68db04d475e7c83ddbf93c9f137c3c139612750ff78564aea624e862c"
+    },
+    {
+      "file": "spec.json",
+      "sha256": "182987c66834802fee451caecce80dd193a08c39a368928b6f8747d2ea082855"
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "c4e350079dd3942a667391a6b596597128487dd3da5714f3f43be6537303e27a"
+    }
+  ],
+  "effective_requirements": {
+    "policy": {
+      "artifact": "routing-policy",
+      "version": "1.0"
+    },
+    "applied_changes": [],
+    "candidates": 2
+  },
+  "model": {
+    "status": "ok",
+    "reason": "",
+    "required": false,
+    "accepted": 0,
+    "rejected": [],
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 5079,
+          "completion_chars": 61
+        },
+        "synthetic": true,
+        "response_sha256": "74f8aa37e08ba1099a3beb3b02dbf4ea2a16697f069ffaa8f3bc606c513f277b",
+        "error": null
+      }
+    ],
+    "provenance": {
+      "client": "fake",
+      "synthetic": true,
+      "request": {
+        "model": "fake",
+        "temperature": 0.0,
+        "max_tokens": 1200,
+        "timeout_s": 30.0,
+        "seed": 7,
+        "prompt_version": "reviewer-prompt-v1",
+        "prompt_sha256": "a4b054dd784322279d0ff0aa304d29bd78506727b82016e9ad1db5545c9cdff3"
+      }
+    }
+  },
+  "config": {
+    "model": "fake",
+    "model_script": null,
+    "ollama_model": "qwen2.5:3b",
+    "boundary_points": true,
+    "approvals": true
+  },
+  "runtime_s": 0.0087
+}

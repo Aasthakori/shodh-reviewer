@@ -1,0 +1,264 @@
+{
+  "reviewer_version": "1.0.0",
+  "bundle": "H04_incomplete_unsupported_code",
+  "status": "INCOMPLETE",
+  "summary": "Review incomplete: artifact router: contains unsupported content: unsupported top-level statement Import; unsupported statement Assign; unknown name 'waited'",
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "warning",
+      "kind": "unsupported_artifact_content",
+      "rule_ref": null,
+      "artifact": "router",
+      "version": "1.3",
+      "location": "router.py#L2",
+      "evidence": {
+        "reason": "unsupported top-level statement Import"
+      },
+      "correction": "Express this logic in the supported language so it can be verified.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F002",
+      "severity": "warning",
+      "kind": "unsupported_artifact_content",
+      "rule_ref": null,
+      "artifact": "router",
+      "version": "1.3",
+      "location": "router.py#L12",
+      "evidence": {
+        "reason": "unsupported statement Assign"
+      },
+      "correction": "Express this logic in the supported language so it can be verified.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F003",
+      "severity": "warning",
+      "kind": "unsupported_artifact_content",
+      "rule_ref": null,
+      "artifact": "router",
+      "version": "1.3",
+      "location": "router.py#L14",
+      "evidence": {
+        "reason": "unknown name 'waited'"
+      },
+      "correction": "Express this logic in the supported language so it can be verified.",
+      "source": "deterministic"
+    }
+  ],
+  "coverage": {
+    "domain": {
+      "mode": "exhaustive",
+      "tickets": 24,
+      "points": {
+        "category": [
+          null,
+          "billing",
+          "technical",
+          "account"
+        ],
+        "urgent": [
+          false,
+          true
+        ],
+        "wait_minutes": [
+          29,
+          30,
+          31
+        ]
+      },
+      "boundary_points": true
+    },
+    "requirements": [
+      {
+        "rule": "R1",
+        "location": "policy.md#L6",
+        "provenance": [],
+        "text": "Missing category -> manual review.",
+        "parsed": "category is missing",
+        "route": "manual_review",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "unreviewed"
+        }
+      },
+      {
+        "rule": "R2",
+        "location": "policy.md#L7",
+        "provenance": [],
+        "text": "Otherwise, urgent ticket -> priority queue.",
+        "parsed": "urgent == True",
+        "route": "priority",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "unreviewed"
+        }
+      },
+      {
+        "rule": "R3",
+        "location": "policy.md#L8",
+        "provenance": [],
+        "text": "Otherwise, waiting >= 30 minutes -> escalation.",
+        "parsed": "wait_minutes >= 30",
+        "route": "escalation",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "unreviewed"
+        }
+      },
+      {
+        "rule": "DEFAULT",
+        "location": "policy.md#L9",
+        "provenance": [],
+        "text": "All remaining tickets -> normal queue.",
+        "parsed": "default",
+        "route": "normal",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "unreviewed"
+        }
+      }
+    ],
+    "unreviewed": [
+      {
+        "scope": "artifact router",
+        "reason": "contains unsupported content: unsupported top-level statement Import; unsupported statement Assign; unknown name 'waited'"
+      }
+    ],
+    "verification_method": "exhaustive partition of the declared domain",
+    "not_verified": "free-form prose outside docs/LANGUAGE.md and Python outside the restricted subset"
+  },
+  "checks": [
+    {
+      "name": "load_and_schema",
+      "status": "pass",
+      "detail": "0 problem(s)"
+    },
+    {
+      "name": "effective_requirements",
+      "status": "pass",
+      "detail": "0 change(s) applied, 0 ignored, 0 conflict(s), 1 candidate reading(s)"
+    },
+    {
+      "name": "requirement_language",
+      "status": "pass",
+      "detail": "4/4 requirements parsed"
+    },
+    {
+      "name": "instruction_injection_scan",
+      "status": "pass",
+      "detail": "0 embedded instruction(s) found and ignored"
+    },
+    {
+      "name": "code_syntax:router",
+      "status": "pass",
+      "detail": "ast.parse ok"
+    },
+    {
+      "name": "code_inspection:router",
+      "status": "incomplete",
+      "detail": "router.py#L2: unsupported top-level statement Import; router.py#L12: unsupported statement Assign; router.py#L14: unknown name 'waited'"
+    },
+    {
+      "name": "semantic:spec",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:workflow",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:router",
+      "status": "incomplete",
+      "detail": "artifact not reviewable"
+    },
+    {
+      "name": "model_review",
+      "status": "pass",
+      "detail": "ok; 0 accepted, 0 rejected claim(s); 1 attempt(s)."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "approvals.json",
+      "sha256": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "4178915b4e535ef60dd71221b99d8fb5bbea50f75a7f6fc0161d3ea302c670bf"
+    },
+    {
+      "file": "policy.md",
+      "sha256": "6e81fe055346dadfef1560b5b9c51f068be16bf2c01ac6b16cacd51afb07e509"
+    },
+    {
+      "file": "router.py",
+      "sha256": "b13f55e781c471740e45331ec7faf5f9a0c734723e72daf501ef4b5a483d366c"
+    },
+    {
+      "file": "spec.json",
+      "sha256": "3c35eab1f86bdfd2297009ba9bd375df89a4f035d6221ab1d2e27064d3cc6a4b"
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "a9a7c6bcf532e6642ea280f57d3e43b07adb563ab53c6d4d682b13185564dcd0"
+    }
+  ],
+  "effective_requirements": {
+    "policy": {
+      "artifact": "routing-policy",
+      "version": "1.0"
+    },
+    "applied_changes": [],
+    "candidates": 1
+  },
+  "model": {
+    "status": "ok",
+    "reason": "",
+    "required": false,
+    "accepted": 0,
+    "rejected": [],
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4389,
+          "completion_chars": 61
+        },
+        "synthetic": true,
+        "response_sha256": "74f8aa37e08ba1099a3beb3b02dbf4ea2a16697f069ffaa8f3bc606c513f277b",
+        "error": null
+      }
+    ],
+    "provenance": {
+      "client": "fake",
+      "synthetic": true,
+      "request": {
+        "model": "fake",
+        "temperature": 0.0,
+        "max_tokens": 1200,
+        "timeout_s": 30.0,
+        "seed": 7,
+        "prompt_version": "reviewer-prompt-v1",
+        "prompt_sha256": "8d42896c2038a8a9a7c8fae06ab991ec02a49ca4d7a4145620c53fe76d95a903"
+      }
+    }
+  },
+  "config": {
+    "model": "fake",
+    "model_script": null,
+    "ollama_model": "qwen2.5:3b",
+    "boundary_points": true,
+    "approvals": true
+  },
+  "runtime_s": 0.0076
+}

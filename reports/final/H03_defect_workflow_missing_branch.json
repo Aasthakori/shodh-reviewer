@@ -1,0 +1,268 @@
+{
+  "reviewer_version": "1.0.0",
+  "bundle": "H03_defect_workflow_missing_branch",
+  "status": "CHANGES_REQUIRED",
+  "summary": "1 blocker(s): missing_branch DEFAULT in workflow.",
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "blocker",
+      "kind": "missing_branch",
+      "rule_ref": "DEFAULT",
+      "artifact": "workflow",
+      "version": "4",
+      "location": "workflow.json#/nodes/n_wait (rev 2)",
+      "evidence": {
+        "counterexample": {
+          "ticket": {
+            "category": "billing",
+            "urgent": false,
+            "wait_minutes": 29
+          },
+          "expected_route": "normal",
+          "expected_by": "DEFAULT (policy.md#L9)",
+          "actual_route": "NO_ROUTE",
+          "actual_by": "workflow.json#/nodes/n_wait (rev 2)",
+          "actual_detail": "n_category -> n_urgent -> n_wait; branch from n_wait has no valid destination"
+        },
+        "requirement": {
+          "rule": "DEFAULT",
+          "text": "All remaining tickets -> normal queue.",
+          "parsed": "default",
+          "location": "policy.md#L9",
+          "provenance": []
+        },
+        "explanation": "no route produced (n_category -> n_urgent -> n_wait; branch from n_wait has no valid destination)",
+        "failing_tickets": 3,
+        "actual_locations": [
+          "workflow.json#/nodes/n_wait (rev 2)"
+        ]
+      },
+      "correction": "Add the missing branch in workflow at workflow.json#/nodes/n_wait (rev 2) so tickets like this reach 'normal'.",
+      "source": "deterministic"
+    },
+    {
+      "id": "F002",
+      "severity": "warning",
+      "kind": "workflow_structure",
+      "rule_ref": null,
+      "artifact": "workflow",
+      "version": "4",
+      "location": "workflow.json#/nodes/n_wait",
+      "evidence": {
+        "message": "decision has no on_false branch"
+      },
+      "correction": "Fix the workflow graph.",
+      "source": "deterministic"
+    }
+  ],
+  "coverage": {
+    "domain": {
+      "mode": "exhaustive",
+      "tickets": 24,
+      "points": {
+        "category": [
+          null,
+          "billing",
+          "technical",
+          "account"
+        ],
+        "urgent": [
+          false,
+          true
+        ],
+        "wait_minutes": [
+          29,
+          30,
+          31
+        ]
+      },
+      "boundary_points": true
+    },
+    "requirements": [
+      {
+        "rule": "R1",
+        "location": "policy.md#L6",
+        "provenance": [],
+        "text": "Missing category -> manual review.",
+        "parsed": "category is missing",
+        "route": "manual_review",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R2",
+        "location": "policy.md#L7",
+        "provenance": [],
+        "text": "Otherwise, urgent ticket -> priority queue.",
+        "parsed": "urgent == True",
+        "route": "priority",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "R3",
+        "location": "policy.md#L8",
+        "provenance": [],
+        "text": "Otherwise, waiting >= 30 minutes -> escalation.",
+        "parsed": "wait_minutes >= 30",
+        "route": "escalation",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "consistent",
+          "router": "consistent"
+        }
+      },
+      {
+        "rule": "DEFAULT",
+        "location": "policy.md#L9",
+        "provenance": [],
+        "text": "All remaining tickets -> normal queue.",
+        "parsed": "default",
+        "route": "normal",
+        "artifacts": {
+          "spec": "consistent",
+          "workflow": "mismatch",
+          "router": "consistent"
+        }
+      }
+    ],
+    "unreviewed": [],
+    "verification_method": "exhaustive partition of the declared domain",
+    "not_verified": "free-form prose outside docs/LANGUAGE.md and Python outside the restricted subset"
+  },
+  "checks": [
+    {
+      "name": "load_and_schema",
+      "status": "pass",
+      "detail": "0 problem(s)"
+    },
+    {
+      "name": "effective_requirements",
+      "status": "pass",
+      "detail": "0 change(s) applied, 0 ignored, 0 conflict(s), 1 candidate reading(s)"
+    },
+    {
+      "name": "requirement_language",
+      "status": "pass",
+      "detail": "4/4 requirements parsed"
+    },
+    {
+      "name": "instruction_injection_scan",
+      "status": "pass",
+      "detail": "0 embedded instruction(s) found and ignored"
+    },
+    {
+      "name": "code_syntax:router",
+      "status": "pass",
+      "detail": "ast.parse ok"
+    },
+    {
+      "name": "code_inspection:router",
+      "status": "pass",
+      "detail": "within restricted subset"
+    },
+    {
+      "name": "semantic:spec",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "semantic:workflow",
+      "status": "fail",
+      "detail": "24 tickets (exhaustive), 3 mismatching"
+    },
+    {
+      "name": "semantic:router",
+      "status": "pass",
+      "detail": "24 tickets (exhaustive), 0 mismatching"
+    },
+    {
+      "name": "model_review",
+      "status": "pass",
+      "detail": "ok; 0 accepted, 0 rejected claim(s); 1 attempt(s)."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "approvals.json",
+      "sha256": "6f51cd32a2a8dafa5b9390c03f998960fb362af49740f3a4f7916786513da9c1"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "bf4be02d11f8cfeb43cfb26bc7b5983ffe29e41e4314841b3e77927dfaa81c08"
+    },
+    {
+      "file": "policy.md",
+      "sha256": "6e81fe055346dadfef1560b5b9c51f068be16bf2c01ac6b16cacd51afb07e509"
+    },
+    {
+      "file": "router.py",
+      "sha256": "6a097efe8f1386196a2b86a8999a21c4ecd157a2bbe555da9fe226e387a2fe1f"
+    },
+    {
+      "file": "spec.json",
+      "sha256": "3c35eab1f86bdfd2297009ba9bd375df89a4f035d6221ab1d2e27064d3cc6a4b"
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "150f33c23538c2af854c4a9a3dad8ff96b1f3e96e9905ea64d477328d2812aff"
+    }
+  ],
+  "effective_requirements": {
+    "policy": {
+      "artifact": "routing-policy",
+      "version": "1.0"
+    },
+    "applied_changes": [],
+    "candidates": 1
+  },
+  "model": {
+    "status": "ok",
+    "reason": "",
+    "required": false,
+    "accepted": 0,
+    "rejected": [],
+    "attempts": [
+      {
+        "attempt": 1,
+        "model": "fake-scripted",
+        "latency_s": 0.0,
+        "usage": {
+          "prompt_chars": 4207,
+          "completion_chars": 61
+        },
+        "synthetic": true,
+        "response_sha256": "74f8aa37e08ba1099a3beb3b02dbf4ea2a16697f069ffaa8f3bc606c513f277b",
+        "error": null
+      }
+    ],
+    "provenance": {
+      "client": "fake",
+      "synthetic": true,
+      "request": {
+        "model": "fake",
+        "temperature": 0.0,
+        "max_tokens": 1200,
+        "timeout_s": 30.0,
+        "seed": 7,
+        "prompt_version": "reviewer-prompt-v1",
+        "prompt_sha256": "fbd7377c8630b406990c69cceddd3d2f767763b0f036eae3aa679a90456d4743"
+      }
+    }
+  },
+  "config": {
+    "model": "fake",
+    "model_script": null,
+    "ollama_model": "qwen2.5:3b",
+    "boundary_points": true,
+    "approvals": true
+  },
+  "runtime_s": 0.008
+}
