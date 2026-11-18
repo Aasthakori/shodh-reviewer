@@ -18,5 +18,3 @@
 5. **Git history.** Tags `v0-checkpoint` → `final-impl` → `frozen-eval` let anyone re-run the checkpoint and the final version on the same data.
 
 **Not verified:** real-model behavior. Only the fake client was run.
-
-*Personal review notes:* <!-- AASTHA: replace this line with 2–3 sentences on what you personally read, ran and checked, e.g. "I read semantic.py and review.py end to end, re-ran run_all.py, and hand-checked the counterexamples for B04, B07 and H02." Keep it true. -->
